@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victor's Kitchen | Delicious Nigerian Food</title>
+<meta name="description" content="Enjoy freshly prepared Nigerian meals at Victor's Kitchen in Port Harcourt.">
+<style>
+:root {
+  --green:#173f32;
+  --dark:#102d24;
+  --cream:#fff8e9;
+  --orange:#d97936;
+  --white:#fff;
+  --grey:#777;
+}
+* {box-sizing:border-box;margin:0;padding:0}
+body {font-family:Arial,sans-serif;background:var(--cream);color:#24352d;line-height:1.6}
+header {background:var(--green);color:white;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo {font-size:23px;font-weight:bold}
+.logo span {color:#f1a45f}
+nav {display:flex;gap:17px;flex-wrap:wrap}
+nav a {color:white;text-decoration:none;font-size:14px}
+.hero {padding:75px 7%;background:linear-gradient(90deg,rgba(10,35,26,.94),rgba(10,35,26,.55)),url('jollof-rice.jpg.JPG') center/cover;color:white}
+.hero h1 {font-size:clamp(35px,6vw,58px);max-width:650px;line-height:1.15}
+.hero p {margin:18px 0;max-width:520px}
+.btn {display:inline-block;background:var(--orange);color:white;padding:12px 22px;border:0;border-radius:6px;text-decoration:none;cursor:pointer;font-weight:bold}
+section {padding:55px 7%}
+.section-title {text-align:center;margin-bottom:30px}
+.section-title h2 {font-size:30px;color:var(--green)}
+.section-title p {color:var(--grey)}
+.menu-controls {display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:25px}
+.menu-controls button {border:1px solid var(--green);background:transparent;color:var(--green);padding:9px 16px;border-radius:20px;cursor:pointer}
+.menu-controls button.active,.menu-controls button:hover {background:var(--green);color:white}
+.menu-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.card {background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px #00000012}
+.card img {width:100%;height:190px;object-fit:cover}
+.card-content {padding:17px}
+.card h3 {color:var(--green);margin-bottom:5px}
+.price {color:var(--orange);font-weight:bold;font-size:19px;margin:10px 0}
+.card button {width:100%}
+.about {background:#e9efdf;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;align-items:center}
+.about img {width:100%;border-radius:12px}
+.features {display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;text-align:center}
+.feature {background:white;padding:25px;border-radius:10px}
+.feature strong {display:block;color:var(--green);font-size:18px;margin-bottom:8px}
+.gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.gallery img {width:100%;height:180px;object-fit:cover;border-radius:9px}
+.testimonial {background:white;padding:22px;border-radius:10px;margin:10px 0}
+.faq details {background:white;padding:16px;margin:10px 0;border-radius:8px}
+.contact {background:var(--green);color:white;text-align:center}
+.contact h2 {color:white}
+.contact p {margin:10px auto;max-width:600px}
+.cart-box {background:white;padding:22px;border-radius:12px;max-width:650px;margin:auto}
+.cart-row {display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #eee}
+.cart-row button {border:0;background:#a33;color:white;padding:4px 9px;border-radius:4px}
+.cart-total {font-size:20px;font-weight:bold;margin:18px 0}
+footer {background:var(--dark);color:white;text-align:center;padding:25px}
+footer a {color:#f1a45f}
+@media(max-width:600px) {
+ header {justify-content:center;text-align:center}
+ nav {justify-content:center}
+ .hero {padding:60px 7%}
+ section {padding:42px 6%}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">VICTOR'S <span>KITCHEN</span></div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+    <a href="#cart">Cart 🛒</a>
+  </nav>
+</header>
+
+<div class="hero" id="home">
+  <h1>Good Food. Great Taste. Happy Moments.</h1>
+  <p>Enjoy delicious, freshly prepared Nigerian meals made with care at Victor's Kitchen.</p>
+  <a class="btn" href="#menu">Explore Our Menu</a>
+</div>
+
+<section id="menu">
+  <div class="section-title">
+    <h2>Our Menu</h2>
+    <p>Freshly prepared meals you'll love.</p>
+  </div>
+
+  <div class="menu-controls">
+    <button class="active" onclick="filterMeals('All',this)">All</button>
+    <button onclick="filterMeals('Rice',this)">Rice</button>
+    <button onclick="filterMeals('Soups',this)">Soups</button>
+    <button onclick="filterMeals('Fast food',this)">Fast Food</button>
+  </div>
+
+  <div class="menu-grid" id="meal-list"></div>
+</section>
+
+<section class="about" id="about">
+  <div>
+    <h2>Welcome to Victor's Kitchen</h2>
+    <p>We believe good food brings people together. Our goal is to serve satisfying Nigerian meals prepared with quality ingredients, care and attention.</p>
+    <br>
+    <p>Whether you're craving a Nigerian favourite or a quick meal, Victor's Kitchen is here to serve you.</p>
+  </div>
+  <img src="egusi.jpg.JPG" alt="Freshly prepared Egusi soup">
+</section>
+
+<section>
+  <div class="section-title">
+    <h2>Why Choose Us?</h2>
+    <p>Good food and service you can look forward to.</p>
+  </div>
+  <div class="features">
+    <div class="feature"><strong>Fresh Meals</strong>Prepared with care.</div>
+    <div class="feature"><strong>Great Taste</strong>Delicious Nigerian favourites.</div>
+    <div class="feature"><strong>Quality Service</strong>We value every customer.</div>
+    <div class="feature"><strong>Easy Ordering</strong>Choose your meals with ease.</div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="section-title">
+    <h2>Food Gallery</h2>
+    <p>A look at some of our delicious meals.</p>
+  </div>
+  <div class="gallery">
+    <img src="jollof-rice.jpg.JPG" alt="Jollof rice">
+    <img src="fried-rice.jpg.jpeg" alt="Fried rice">
+    <img src="egusi.jpg.JPG" alt="Egusi soup">
+    <img src="pepper-soup.jpg.JPG" alt="Pepper soup">
+    <img src="chicken-and-chips.jpg.JPG" alt="Chicken and chips">
+  </div>
+</section>
+
+<section>
+  <div class="section-title">
+    <h2>Customer Experience</h2>
+    <p>We look forward to making every meal a good experience.</p>
+  </div>
+  <div class="testimonial">
+    "Thank you for choosing Victor's Kitchen. We appreciate every order and every customer."
+  </div>
+</section>
+
+<section id="cart">
+  <div class="section-title">
+    <h2>Your Shopping Cart</h2>
+    <p>Review your selected meals below.</p>
+  </div>
+  <div class="cart-box">
+    <div id="cart-items">Your cart is currently empty.</div>
+    <div class="cart-total" id="cart-total">Total: ₦0</div>
+    <button class="btn" onclick="copyOrder()">Copy Order Summary</button>
+    <p style="font-size:13px;color:#777;margin-top:12px">Copy your order summary to share with Victor's Kitchen. Online order submission and payment will be configured separately.</p>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="section-title"><h2>Frequently Asked Questions</h2></div>
+  <details><summary>Where is Victor's Kitchen located?</summary><p>We serve customers in Port Harcourt, Rivers State.</p></details>
+  <details><summary>How can I place an order?</summary><p>Select your meals from the menu and add them to your cart.</p></details>
+  <details><summary>What payment method do you accept?</summary><p>Bank transfer only. Payment details will be provided when ordering is configured.</p></details>
+  <details><summary>Can I ask questions before ordering?</summary><p>Yes. Use the live chat button on this website to send us a message.</p></details>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Let's Serve You Something Delicious!</h2>
+  <p>Have a question about our meals? Chat with us using the live chat button on this page.</p>
+  <a class="btn" href="#menu">View Our Menu</a>
+</section>
+
+<footer>
+  <div class="logo">VICTOR'S <span>KITCHEN</span></div>
+  <p>Delicious Nigerian meals, prepared with care.</p>
+  <p>Port Harcourt, Rivers State, Nigeria</p>
+  <p>© 2026 Victor's Kitchen. All rights reserved.</p>
+</footer>
+
+<script>
+const meals = [
+ {id:1,name:"Jollof Rice & Chicken",cat:"Rice",price:3500,desc:"Smoky party-style rice served with tasty chicken.",img:"jollof-rice.jpg.JPG"},
+ {id:2,name:"Fried Rice & Chicken",cat:"Rice",price:3800,desc:"Colourful fried rice with a satisfying chicken portion.",img:"fried-rice.jpg.jpeg"},
+ {id:3,name:"Egusi Soup & Swallow",cat:"Soups",price:4000,desc:"Rich, hearty egusi soup served with your choice of swallow.",img:"egusi.jpg.JPG"},
+ {id:4,name:"Pepper Soup",cat:"Soups",price:4500,desc:"Delicious Nigerian pepper soup, freshly prepared.",img:"pepper-soup.jpg.JPG"},
+ {id:5,name:"Chicken and Chips",cat:"Fast food",price:4500,desc:"Crispy chips served with delicious chicken.",img:"chicken-and-chips.jpg.JPG"}
+];
+
+let cart = [];
+
+function money(amount) {
+ return "₦" + amount.toLocaleString("en-NG");
+}
+
+function displayMeals(category="All") {
+ const list = document.getElementById("meal-list");
+ list.innerHTML = "";
+ meals.filter(m=>category==="All" || m.cat===category).forEach(m=>{
+  list.innerHTML += `
+   <div class="card">
+    <img src="${m.img}" alt="${m.name}">
+    <div class="card-content">
+     <h3>${m.name}</h3>
+     <p>${m.desc}</p>
+     <div class="price">${money(m.price)}</div>
+     <button class="btn" onclick="addToCart(${m.id})">Add to Cart</button>
+    </div>
+   </div>`;
+ });
+}
+
+function filterMeals(category,button) {
+ document.querySelectorAll(".menu-controls button").forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ displayMeals(category);
+}
+
+function addToCart(id) {
+ const meal = meals.find(m=>m.id===id);
+ const existing = cart.find(m=>m.id===id);
+ if(existing) existing.qty++;
+ else cart.push({...meal,qty:1});
+ displayCart();
+}
+
+function removeFromCart(id) {
+ cart = cart.filter(m=>m.id!==id);
+ displayCart();
+}
+
+function displayCart() {
+ const box = document.getElementById("cart-items");
+ if(cart.length===0) {
+  box.innerHTML="Your cart is currently empty.";
+ } else {
+  box.innerHTML=cart.map(m=>`
+   <div class="cart-row">
+    <span>${m.name} × ${m.qty}</span>
+    <span>${money(m.price*m.qty)}
+    <button onclick="removeFromCart(${m.id})">Remove</button></span>
+   </div>`).join("");
+ }
+ const total=cart.reduce((sum,m)=>sum+m.price*m.qty,0);
+ document.getElementById("cart-total").textContent="Total: "+money(total);
+}
+
+function copyOrder() {
+ if(cart.length===0) {
+  alert("Your cart is empty. Please add a meal first.");
+  return;
+ }
+ let summary="VICTOR'S KITCHEN ORDER\n\n";
+ cart.forEach(m=>{
+  summary+=m.name+" x "+m.qty+" = "+money(m.price*m.qty)+"\n";
+ });
+ summary+="\nTotal: "+money(cart.reduce((s,m)=>s+m.price*m.qty,0));
+ if(navigator.clipboard && navigator.clipboard.writeText) {
+  navigator.clipboard.writeText(summary)
+   .then(()=>alert("Order summary copied!"))
+   .catch(()=>alert(summary));
+ } else {
+  alert(summary);
+ }
+}
+
+displayMeals();
+displayCart();
+</script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6aeb9aaef00c943c36e1ab0d/1k6k58f90';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+</body>
+</html>
